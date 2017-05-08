@@ -1,0 +1,16 @@
+in:
+  type: jdbc
+  driver_path: sqlite-jdbc-3.16.1.jar
+  driver_class: org.sqlite.JDBC
+  url: jdbc:sqlite:database.sqlite
+  table: Loan
+out:
+  type: stdout
+#  host: cluster01.eu-central-1.redshift.amazonaws.com
+#  aws_auth_method: env
+#  user: user
+#  password: pass
+#  database: db
+#  table: Loan2
+#  mode: insert
+#  s3_bucket: bucket
