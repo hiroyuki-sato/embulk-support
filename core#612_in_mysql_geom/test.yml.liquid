@@ -1,0 +1,18 @@
+in:
+  type: mysql
+  database: embulk_test
+  user: root
+  password: {{ env.mysql_password }}
+  host: 127.0.0.1
+  # don't work this query.
+#  query: "select id,ST_AsGeoJSON(geometry) as geom from geo_table"
+  query: "select id,CAST(ST_AsGeoJSON(geometry) as char) as geom from geo_table"
+  column_options:
+    geom:
+      type: json
+
+#  table: "select id,ST_AsGeoJSON(geometry) as geom from geo_table;"
+#  table: "select id,ST_AsGeoJSON(geometry) as geom from geo_table;"
+out:
+  type: stdout
+  
