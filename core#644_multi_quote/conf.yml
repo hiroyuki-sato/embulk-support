@@ -1,0 +1,28 @@
+in:
+  type: file
+  path_prefix: sample.txt
+#  decoders:
+#    type: gzip}
+  parser:
+    charset: UTF-8
+    newline: LF
+    type: csv
+    delimiter: ','
+    quote: '"'
+    escape: '"'
+    trim_if_not_quoted: false
+    skip_header_lines: 0
+    allow_extra_columns: false
+    allow_optional_columns: false
+    stop_on_invalid_record: true
+    columns:
+      - {name: cid , type: string}
+      - {name: dv, type: string}
+      - {name: url, type: string}
+      - {name: visit, type: timestamp, format: '%Y-%m-%d %H:%M:%S'}
+      - {name: new_url, type: string}
+      - {name: sub, type: string}
+      - {name: city, type: string}
+      - {name: page, type: string}
+out:
+  type: stdout
