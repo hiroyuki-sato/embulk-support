@@ -1,0 +1,12 @@
+in:
+  type: file
+  path_prefix: sample_family_array.json
+  parser:
+    type: jsonpath
+    root: "$"
+    columns:
+    - { name: name,  type: string }
+    - { name: emoji, type: string }
+
+out:
+  type: stdout
