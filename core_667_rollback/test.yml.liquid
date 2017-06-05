@@ -1,0 +1,35 @@
+in:
+in:
+  type: file
+  path_prefix: hoge/csv/sample_
+  decoders:
+  - {type: gzip}
+  parser:
+    charset: UTF-8
+    newline: LF
+    type: csv
+    delimiter: ','
+    quote: '"'
+    escape: '"'
+    null_string: 'NULL'
+    trim_if_not_quoted: false
+    skip_header_lines: 1
+    allow_extra_columns: false
+    allow_optional_columns: false
+    columns:
+    - {name: id, type: long}
+    - {name: account, type: long}
+    - {name: time, type: timestamp, format: '%Y-%m-%d %H:%M:%S'}
+    - {name: purchase, type: timestamp, format: '%Y%m%d'}
+    - {name: comment, type: string}
+out:
+  type: mysql
+  table: rollback_test
+  database: embulk_test
+  user: root
+  password: {{ env.mysql_password }}
+  host: 127.0.0.1
+  mode: insert
+  column_options:
+    purchase: {type: 'timestamp default current_timestamp'}
+    time:     {type: 'timestamp default current_timestamp'}
