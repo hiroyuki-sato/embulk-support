@@ -1,3 +1,9 @@
+## Environment
+
+* macOS 10.12.5
+* embulk 0.8.22
+* embulk-parser-jsonl: 0.2.0
+* embulk-parser-jsonpath: 0.2.0
 
 ## json
 
