@@ -1,0 +1,9 @@
+in:
+  type: command
+#  command: "ruby -e 'print \"a,c,c\n\"*20'"
+  command: cat sample.txt
+  parser: 
+    type: csv
+
+out:
+  type: stdout
