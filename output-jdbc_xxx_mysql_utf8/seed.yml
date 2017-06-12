@@ -1,0 +1,8 @@
+in:
+  type: file
+  path_prefix: sample.csv
+  parser:
+    type: csv
+out:
+  type: stdout
+

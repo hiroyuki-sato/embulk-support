@@ -1,0 +1,38 @@
+in:
+  type: file
+  path_prefix: sample.csv
+  parser:
+    type: csv
+    charset: UTF-8
+    newline: LF
+    delimiter: ','
+    quote: '"'
+    escape: '"'
+    trim_if_not_quoted: false
+    skip_header_lines: 1
+    allow_extra_columns: false
+    allow_optional_columns: false
+    default_timezone: 'Asia/Tokyo'
+    columns:
+    - {name: name, type: string}
+    - {name: name_kana, type: string}
+    - {name: mail_address, type: string}
+    - {name: sex, type: string}
+    - {name: age, type: long}
+    - {name: birthday, type: timestamp, format: '%Y/%m/%d'}
+    - {name: prefecture, type: string}
+    - {name: curry, type: string}
+#out: {type: stdout}
+out:
+  type: mysql
+  table: users
+#  database: embulk_test
+  database: embulk_test_utf8mb4
+  user: root
+  password: {{ env.mysql_password }}
+  host: 127.0.0.1
+  mode: insert
+#  options: { useLegacyDatetimeCode: false, serverTimezone: UTC }
+  column_options:
+    birthday: {type: 'date null'}
+

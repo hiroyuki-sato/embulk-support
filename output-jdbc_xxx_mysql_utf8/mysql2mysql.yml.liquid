@@ -1,0 +1,22 @@
+in:
+  type: mysql
+  table: users
+#  database: embulk_test
+  database: embulk_test_utf8mb4
+  user: root
+  password: {{ env.mysql_password }}
+  host: 127.0.0.1
+#out: {type: stdout}
+out:
+  type: mysql
+  table: users2
+#  database: embulk_test
+  database: embulk_test_utf8mb4
+  user: root
+  password: {{ env.mysql_password }}
+  host: 127.0.0.1
+  mode: insert
+#  options: { useLegacyDatetimeCode: false, serverTimezone: UTC }
+  column_options:
+    birthday: {type: 'date null'}
+
