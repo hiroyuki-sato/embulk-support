@@ -1,0 +1,5 @@
+in:
+  type: file
+  path_prefix: "/Users/hsato/OpenPorjects/embulk/embulk-support/core_674_liquid_date/sample/csv/sample_"
+out:
+  type: stdout
