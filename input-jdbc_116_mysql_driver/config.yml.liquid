@@ -1,0 +1,11 @@
+in:
+  type: mysql
+  table: utf8mb4_test
+  database: embulk_test
+  user: root
+  password: {{ env.mysql_password }}
+  host: 127.0.0.1
+
+out:
+  type: stdout
+  
