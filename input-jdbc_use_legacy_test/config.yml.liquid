@@ -1,0 +1,12 @@
+in:
+  type: mysql
+  table: time_test
+  database: embulk_test
+  user: root
+  password: {{ env.mysql_password }}
+  host: 127.0.0.1
+  options: { useLegacyDatetimeCode: false }
+
+out:
+  type: stdout
+  
