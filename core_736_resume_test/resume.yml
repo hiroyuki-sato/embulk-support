@@ -1,0 +1,134 @@
+exec_task: {transaction_time: '2017-07-24 04:29:49.558 UTC'}
+in_task:
+  DecoderTaskSources: []
+  DecoderConfigs: []
+  ParserTaskSource:
+    DefaultTimeZone: UTC
+    SchemaConfig:
+    - {name: id, type: long}
+    - {name: account, type: long}
+    - {format: '%Y-%m-%d %H:%M:%S', name: time, type: timestamp}
+    - {format: '%Y%m%d', name: purchase, type: timestamp}
+    - {name: comment, type: string}
+    Delimiter: ','
+    Charset: UTF-8
+    SkipHeaderLines: 1
+    Newline: LF
+    HeaderLine: null
+    StopOnInvalidRecord: true
+    MaxQuotedSizeLimit: 131072
+    DefaultTimestampFormat: '%Y-%m-%d %H:%M:%S.%N %z'
+    CommentLineMarker: null
+    TrimIfNotQuoted: false
+    QuoteChar: '"'
+    AllowOptionalColumns: false
+    NullString: 'NULL'
+    DefaultDate: '1970-01-01'
+    AllowExtraColumns: false
+    EscapeChar: '"'
+  FileInputTaskSource:
+    LastPath: null
+    FollowSymlinks: false
+    PathPrefix: hoge/csv/sample_
+    Files: [hoge/csv/sample_01.csv, hoge/csv/sample_02.csv, hoge/csv/sample_03.csv]
+  ParserConfig:
+    charset: UTF-8
+    newline: LF
+    type: csv
+    delimiter: ','
+    quote: '"'
+    escape: '"'
+    null_string: 'NULL'
+    trim_if_not_quoted: false
+    skip_header_lines: 1
+    allow_extra_columns: false
+    allow_optional_columns: false
+    stop_on_invalid_record: true
+    columns:
+    - {name: id, type: long}
+    - {name: account, type: long}
+    - {name: time, type: timestamp, format: '%Y-%m-%d %H:%M:%S'}
+    - {name: purchase, type: timestamp, format: '%Y%m%d'}
+    - {name: comment, type: string}
+out_task:
+  DefaultTimeZone: UTC
+  Options: {}
+  User: hsato
+  MergeKeys: null
+  Schema: public
+  Port: 5432
+  ColumnOptions: {}
+  TempSchema: null
+  TargetTableSchema:
+  - {name: id, sqlType: -5, simpleTypeName: INT8, sizeTypeParameter: 19, scaleTypeParameter: 0,
+    dataLength: 19, declaredType: null, notNull: false, uniqueKey: false}
+  - {name: account, sqlType: -5, simpleTypeName: INT8, sizeTypeParameter: 19, scaleTypeParameter: 0,
+    dataLength: 19, declaredType: null, notNull: false, uniqueKey: false}
+  - {name: time, sqlType: 93, simpleTypeName: TIMESTAMPTZ, sizeTypeParameter: 35,
+    scaleTypeParameter: 6, dataLength: 35, declaredType: null, notNull: false, uniqueKey: false}
+  - {name: purchase, sqlType: 93, simpleTypeName: TIMESTAMPTZ, sizeTypeParameter: 35,
+    scaleTypeParameter: 6, dataLength: 35, declaredType: null, notNull: false, uniqueKey: false}
+  - {name: comment, sqlType: 12, simpleTypeName: TEXT, sizeTypeParameter: 2147483647,
+    scaleTypeParameter: 0, dataLength: 2147483647, declaredType: null, notNull: false,
+    uniqueKey: false}
+  BeforeLoad: null
+  Database: embulk_test
+  Features:
+    maxTableNameLength: 30
+    tableNameLengthSemantics: BYTES
+    supportedModes: [insert, insert_direct, merge, merge_direct, truncate_insert,
+      replace]
+    ignoreMergeKeys: false
+  Password: ''
+  MergeRule: null
+  IntermediateTables:
+  - {database: null, schemaName: public, tableName: resume_test_21426780_bl_tmp000}
+  - {database: null, schemaName: public, tableName: resume_test_21426780_bl_tmp001}
+  - {database: null, schemaName: public, tableName: resume_test_21426780_bl_tmp002}
+  - {database: null, schemaName: public, tableName: resume_test_21426780_bl_tmp003}
+  - {database: null, schemaName: public, tableName: resume_test_21426780_bl_tmp004}
+  - {database: null, schemaName: public, tableName: resume_test_21426780_bl_tmp005}
+  BatchSize: 16777216
+  Table: resume_test
+  Mode: insert
+  Host: 127.0.0.1
+  MaxRetryWait: 1800000
+  NewTableSchema:
+  - {name: id, sqlType: -5, simpleTypeName: BIGINT, sizeTypeParameter: 22, scaleTypeParameter: 0,
+    dataLength: 22, declaredType: null, notNull: false, uniqueKey: false}
+  - {name: account, sqlType: -5, simpleTypeName: BIGINT, sizeTypeParameter: 22, scaleTypeParameter: 0,
+    dataLength: 22, declaredType: null, notNull: false, uniqueKey: false}
+  - {name: time, sqlType: 93, simpleTypeName: TIMESTAMP WITH TIME ZONE, sizeTypeParameter: 26,
+    scaleTypeParameter: 0, dataLength: 26, declaredType: null, notNull: false, uniqueKey: false}
+  - {name: purchase, sqlType: 93, simpleTypeName: TIMESTAMP WITH TIME ZONE, sizeTypeParameter: 26,
+    scaleTypeParameter: 0, dataLength: 26, declaredType: null, notNull: false, uniqueKey: false}
+  - {name: comment, sqlType: 2005, simpleTypeName: CLOB, sizeTypeParameter: 4000,
+    scaleTypeParameter: 0, dataLength: 4000, declaredType: null, notNull: false, uniqueKey: false}
+  AfterLoad: null
+  Ssl: false
+  RetryWait: 1000
+  ActualTable: {database: null, schemaName: public, tableName: resume_test}
+  RetryLimit: 12
+in_schema:
+- {index: 0, name: id, type: long}
+- {index: 1, name: account, type: long}
+- {index: 2, name: time, type: timestamp}
+- {index: 3, name: purchase, type: timestamp}
+- {index: 4, name: comment, type: string}
+out_schema:
+- {index: 0, name: id, type: long}
+- {index: 1, name: account, type: long}
+- {index: 2, name: time, type: timestamp}
+- {index: 3, name: purchase, type: timestamp}
+- {index: 4, name: comment, type: string}
+in_reports:
+- {}
+- null
+- {}
+out_reports:
+- {}
+- {}
+- null
+- null
+- {}
+- {}
