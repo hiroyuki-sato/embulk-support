@@ -1,0 +1,8 @@
+in:
+  type: file
+  path_prefix: sample2.txt
+  parser:
+    type: csv
+    quote: '"'
+out:
+  type: stdout

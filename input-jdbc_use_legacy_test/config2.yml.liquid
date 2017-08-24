@@ -5,9 +5,10 @@ in:
   user: root
   password: {{ env.mysql_password }}
   host: 127.0.0.1
+  options: { useLegacyDatetimeCode: false, serverTimezone: "Pacific/Midway", noTimezoneConversionForDateType: false }
 #  options: { useLegacyDatetimeCode: false, noTimezoneConversionForDateType: true }
-  options: { noTimezoneConversionForDateType: false }
-  driver_path: /tmp/mysql-connector-java-5.1.42.jar
+#  options: { noTimezoneConversionForDateType: false }
+  driver_path: ./mysql-connector-java-5.1.42.jar
 
 out:
   type: stdout
