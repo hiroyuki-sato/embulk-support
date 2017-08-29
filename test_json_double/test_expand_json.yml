@@ -1,0 +1,25 @@
+in:
+  type: file
+  parser:
+    type: none
+    column_name: record
+  path_prefix: test.json
+filters:
+  - type: expand_json
+    json_column_name: record
+    root: "$."
+    expanded_columns:
+      - {name: "double", type: double}
+      - {name: "string", type: string}
+      - {name: "long", type: long}
+#      - {name: "long", type: string}
+      - {name: "boolean", type: boolean }
+  - type: calc
+    columns:
+    - name: double
+      formula: "10 * double"
+
+    
+out:
+  type: stdout
+
