@@ -1,0 +1,14 @@
+in:
+  type: file
+  path_prefix: test.json
+  parser:
+    type: json
+
+filters:
+  - type: json_key_joiner
+    json_column_name: record # // JSON Type Column
+    key_value:
+      added: fuga
+
+out:
+  type: stdout
