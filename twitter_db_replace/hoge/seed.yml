@@ -1,0 +1,5 @@
+in:
+  type: file
+  path_prefix: "/Users/hsato/OpenProjects/embulk/embulk-support/twitter_pg_replace/hoge/csv/sample_"
+out:
+  type: stdout
