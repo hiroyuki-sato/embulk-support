@@ -6,6 +6,27 @@
 | json parser (builtin)     | OK                 | NG            |
 
 
+## sample
+
+input data
+
+```
+{ "double":-1.234e-5, "string":"string","long":12345e3, "boolean":true }
+```
+
+`embulk preview test_json.yml`
+
+```
++-----------------------------------------------------------------------+
+|                                                           record:json |
++-----------------------------------------------------------------------+
+| {"string":"string","boolean":true,"long":1.2345E7,"double":-1.234E-5} |
++-----------------------------------------------------------------------+
+```
+
+12345e3 -> 1.2345E7
+
+
 ## embulk exponential test
 
 ```

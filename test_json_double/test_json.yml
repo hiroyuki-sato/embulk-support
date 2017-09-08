@@ -1,0 +1,10 @@
+in:
+  type: file
+  parser:
+    type: json
+  path_prefix: test.json
+
+    
+out:
+  type: stdout
+
