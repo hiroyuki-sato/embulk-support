@@ -170,3 +170,13 @@ org.embulk.exec.NoSampleException: No input records to preview
 
 Error: No input records to preview
 ```
+
+## Biglong
+
+```
++----------------------------------+
+|                      record:json |
++----------------------------------+
+| {"biglong":92233720368547758070} |
++----------------------------------+
+```

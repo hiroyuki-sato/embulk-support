@@ -1,0 +1,8 @@
+in:
+  type: file
+  parser:
+    type: json
+  path_prefix: biglong.json
+out:
+  type: stdout
+
