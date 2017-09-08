@@ -1,0 +1,15 @@
+in:
+  type: file
+  parser:
+    type: json
+  path_prefix: bignum.json
+filters:
+  - type: expand_json
+    json_column_name: record
+    root: "$."
+    expanded_columns:
+      - {name: "biglong", type: string}
+      - {name: "biglong_exp", type: string}
+out:
+  type: stdout
+
