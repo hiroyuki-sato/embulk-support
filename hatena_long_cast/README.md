@@ -1,5 +1,9 @@
 ## double -> long typecast
 
+http://obel.hatenablog.jp/entry/20170926/1506403480
+
+## Use typecast
+
 ```yaml
 in:
   type: file
