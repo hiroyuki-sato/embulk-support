@@ -1,0 +1,19 @@
+in:
+  type: file
+  path_prefix: test_data/test.csv
+  parser:
+    type: csv
+    skip_header_lines: 1
+    columns:
+      - {name: a, type: string}
+      - {name: b, type: string}
+      - {name: c, type: string}
+out:
+  type: postgresql
+  host: {{ env.HOST }}
+  user: {{ env.USER }}
+  password: {{ env.PASSWORD }}
+  port: {{ env.PORT }}
+  database: {{ env.DATABASE }}
+  table: embulk_test
+  mode: insert
