@@ -1,0 +1,18 @@
+in:
+  type: mysql
+  host: 127.0.0.1
+  user: {{ env.mysql_user }}
+  password: {{ env.mysql_password }}
+  table: in_mysql_test
+  database: embulk_test
+  options: { useLegacyDatetimeCode: false }
+  incremental_columns:
+  - c1
+  incremental: true
+
+out:
+  type: stdout
+
+exec:
+  max_threads: 1
+  min_output_tasks: 1

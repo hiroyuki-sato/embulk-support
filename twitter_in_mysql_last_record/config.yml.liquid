@@ -1,0 +1,28 @@
+in:
+  type: file
+  path_prefix: sample.txt
+  parser:
+    charset: UTF-8
+    newline: LF
+    type: csv
+    delimiter: ','
+    quote: '"'
+    escape: '"'
+    default_timezone: "Asia/Tokyo"
+    trim_if_not_quoted: false
+    skip_header_lines: 0
+    allow_extra_columns: false
+    allow_optional_columns: false
+    columns:
+    - {name: c0, type: long}
+    - {name: c1, type: timestamp, format: '%Y-%m-%d %H:%M:%S %z'}
+    - {name: c2, type: string}
+#out: {type: stdout}
+out:
+  type: mysql
+  host: 127.0.0.1
+  user:  {{ env.mysql_user }}
+  password:  {{ env.mysql_password }}
+  table: in_mysql_test
+  database: embulk_test
+  mode: replace
