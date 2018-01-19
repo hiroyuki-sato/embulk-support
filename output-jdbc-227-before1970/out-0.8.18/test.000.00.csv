@@ -1,0 +1,4 @@
+name,mail,birthday
+sample_user1,sample_user1@example.com,1980-01-01 00:00:00.000000 +0900
+sample_user2,sample_user2@example.com,1000-01-01 00:00:00.000000 +0918
+sample_user2,sample_user2@example.com,0100-01-01 00:00:00.000000 +0918

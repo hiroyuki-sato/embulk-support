@@ -1,0 +1,50 @@
+
+0.8.18 and 0.8.39 output are entirely same.
+
+
+```yaml
+in:
+  type: file
+  path_prefix: users.csv
+  parser:
+    charset: UTF-8
+    newline: LF
+    type: csv
+    delimiter: ','
+    quote: '"'
+    trim_if_not_quoted: true
+#    skip_header_lines: 1
+    allow_extra_columns: false
+    allow_optional_columns: false
+    default_timezone: 'Asia/Tokyo'
+    columns:
+    - {name: name, type: string}
+    - {name: mail, type: string}
+    - {name: birthday, type: timestamp, format: "%Y-%m-%d"}
+out:
+  type: file
+  path_prefix: out/test.
+  file_ext: csv
+  formatter:
+    type: csv
+    default_timezone: "Asia/Tokyo"
+exec:
+  min_output_tasks: 1
+```
+
+input
+
+```
+"sample_user1","sample_user1@example.com","1980-01-01"
+"sample_user2","sample_user2@example.com","1000-01-01"
+"sample_user2","sample_user2@example.com","100-01-01"
+```
+
+output
+
+```csv
+name,mail,birthday
+sample_user1,sample_user1@example.com,1980-01-01 00:00:00.000000 +0900
+sample_user2,sample_user2@example.com,1000-01-01 00:00:00.000000 +0918
+sample_user2,sample_user2@example.com,0100-01-01 00:00:00.000000 +0918
+```

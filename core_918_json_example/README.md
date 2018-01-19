@@ -1,5 +1,7 @@
 ## JSONPath parser example
 
+input data
+
 ```json
 [
   {
@@ -21,7 +23,9 @@ embulk run jsonpath_example.yml
 
 ## JSON parser example
 
-```
+input data
+
+```json
 { "col1": 123, "col2": "xyz" }
 { "col1": 456, "col2": "abc" }
 ```
