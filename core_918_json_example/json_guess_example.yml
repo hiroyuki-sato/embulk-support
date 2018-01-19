@@ -1,0 +1,7 @@
+in:
+  type: file
+  path_prefix: json_sample.txt
+  parser:
+    type: json
+out:
+  type: stdout

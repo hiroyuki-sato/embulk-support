@@ -1,0 +1,8 @@
+in:
+  type: file
+  path_prefix: jsonpath_sample.txt
+  parser:
+    type: jsonpath
+#    root: $.
+out:
+  type: stdout

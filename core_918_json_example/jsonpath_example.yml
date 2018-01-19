@@ -1,0 +1,11 @@
+in:
+  type: file
+  path_prefix: jsonpath_sample.txt
+  parser:
+    type: jsonpath
+    charset: UTF-8
+    newline: LF
+    columns:
+    - {name: col1, type: long}
+    - {name: col2, type: string}
+out: {type: stdout}
