@@ -1,0 +1,23 @@
+in:
+  type: file
+  parser:
+    type: csv
+    charset: UTF-8
+    newline: LF
+    delimiter: ','
+    quote: '"'
+    escape: '"'
+    trim_if_not_quoted: false
+    skip_header_lines: 1
+    allow_extra_columns: false
+    allow_optional_columns: false
+    columns:
+    - {name: date, type: timestamp, format: '%Y-%m-%d'}
+    - {name: timestamp, type: timestamp, format: '%Y-%m-%d %H:%M:%S.%N'}
+    - {name: 'null', type: string}
+    - {name: long, type: long}
+    - {name: string, type: string}
+    - {name: double, type: double}
+    - {name: boolean, type: boolean}
+  path_prefix: example.csv
+out: {type: stdout}
