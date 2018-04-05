@@ -34,7 +34,6 @@ filters:
             t.strftime("%Y-%m-%d %H:%M:%S.%6N %:z")
           else
             nil
-            "hoge"
           end
         end
   - type: column
