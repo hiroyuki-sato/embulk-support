@@ -27,13 +27,18 @@ filters:
   - type: ruby_proc
     columns:
     - name: timestamp_format
+      skip_nil: false
       proc: |
         ->(_,record) do
           if t = record["timestamp"]
             t.strftime("%Y-%m-%d %H:%M:%S.%6N %:z")
           else
             nil
+            "hoge"
           end
         end
+  - type: column
+    columns:
+    - { name: timestamp_format }
           
 out: {type: stdout}
