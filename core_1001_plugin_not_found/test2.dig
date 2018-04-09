@@ -1,0 +1,16 @@
+timezone: Asia/Tokyo
+schedule:
+  minutes_interval>: 1
+
++dircheck:
+   sh>: 'echo "*** test **" ; ls -1 vendor/bundle/jruby/2.3.0/gems/ ; echo "*** done ***"'
+
++test2:
+  for_each>:
+    TABLE: [A, B, C, D, E,F,G,H,I,J]
+  _parallel: true
+  _do:
+    +task1:
+      sh>: 'echo "*** test **" ; ls -1 vendor/bundle/jruby/2.3.0/gems/ ; echo "*** done ***"'
+    +task2:
+      sh>: embulk run -b vendor/bundle embulk_test.yml
