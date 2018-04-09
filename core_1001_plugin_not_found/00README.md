@@ -25,7 +25,7 @@
 ```
 
 
-```
+```yaml
 in:
   type: postgresql
   host: localhost
@@ -37,7 +37,7 @@ out:
   type: stdout
 ```
 
-```
+```yaml
 timezone: Asia/Tokyo
 schedule:
   minutes_interval>: 1
