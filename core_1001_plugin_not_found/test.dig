@@ -1,0 +1,2 @@
++embulk_test:
+  sh>: embulk run embulk_test.yml

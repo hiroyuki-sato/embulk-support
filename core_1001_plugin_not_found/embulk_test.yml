@@ -1,0 +1,9 @@
+in:
+  type: postgresql
+  host: localhost
+  user: hsato
+  database: embulk_test
+  table: users
+  password: xxx
+out:
+  type: stdout
