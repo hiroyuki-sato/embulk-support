@@ -1,2 +1,6 @@
+timezone: Asia/Tokyo
+schedule:
+  minutes_interval>: 1
+
 +embulk_test:
-  sh>: embulk run embulk_test.yml
+  sh>: embulk run -b vendor/bundle embulk_test.yml

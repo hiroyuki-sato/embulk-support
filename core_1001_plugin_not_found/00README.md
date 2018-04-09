@@ -3,7 +3,29 @@
 [Can not find InputPlugin 'postgresql' error](https://github.com/embulk/embulk/issues/1001)
 
 
-```yaml
+```
+% mkdir vendor
+% embulk mkbundle vendor/bundle
+% cd vendor/bundle/
+% echo 'gem "embulk-input-postgresql"' >> Gemfile
+% embulk bundle
+```
+
+```
+.
+|-- 00README.md
+|-- embulk_test.yml
+|-- test.dig
+`-- vendor
+    `-- bundle
+        |-- Gemfile
+        |-- Gemfile.lock
+        |-- embulk
+        `-- jruby
+```
+
+
+```
 in:
   type: postgresql
   host: localhost
@@ -15,48 +37,60 @@ out:
   type: stdout
 ```
 
-```yaml
+```
+timezone: Asia/Tokyo
+schedule:
+  minutes_interval>: 1
+
 +embulk_test:
-  sh>: embulk run embulk_test.yml
+  sh>: embulk run -b vendor/bundle embulk_test.yml
 ```
 
 
-
-
 ```
-digdag run test.dig
-2018-04-09 09:21:06 +0900: Digdag v0.9.24
-2018-04-09 09:21:08 +0900 [WARN] (main): Using a new session time 2018-04-09T00:00:00+00:00.
-2018-04-09 09:21:08 +0900 [INFO] (main): Using session /Users/user/OpenProjects/embulk/embulk-support/core_1001_plugin_not_found/.digdag/status/20180409T000000+0000.
-2018-04-09 09:21:08 +0900 [INFO] (main): Starting a new session project id=1 workflow name=test session_time=2018-04-09T00:00:00+00:00
-2018-04-09 09:21:09 +0900 [INFO] (0017@[0:default]+test+embulk_test): sh>: embulk run embulk_test.yml
-2018-04-09 09:21:09.433 +0900: Embulk v0.9.5
-2018-04-09 09:21:10.251 +0900 [INFO] (main): Started Embulk v0.9.5
-2018-04-09 09:21:12.862 +0900 [INFO] (0001:transaction): Gem's home and path are set by default: "/Users/user/.embulk/lib/gems"
-2018-04-09 09:21:13.862 +0900 [INFO] (0001:transaction): Loaded plugin embulk-input-postgresql (0.9.1)
-2018-04-09 09:21:13.916 +0900 [INFO] (0001:transaction): JDBC Driver = /Users/user/.embulk/lib/gems/gems/embulk-input-postgresql-0.9.1/default_jdbc_driver/postgresql-9.4-1205-jdbc41.jar
-2018-04-09 09:21:13.924 +0900 [INFO] (0001:transaction): Connecting to jdbc:postgresql://localhost:5432/embulk_test options {ApplicationName=embulk-input-postgresql, user=user, password=***, tcpKeepAlive=true, loginTimeout=300, socketTimeout=1800}
-2018-04-09 09:21:13.988 +0900 [INFO] (0001:transaction): SQL: SET search_path TO "public"
-2018-04-09 09:21:14.007 +0900 [INFO] (0001:transaction): Using JDBC Driver PostgreSQL 9.4 JDBC4.1 (build 1205)
-2018-04-09 09:21:14.100 +0900 [INFO] (0001:transaction): Using local thread executor with max_threads=8 / output tasks 4 = input tasks 1 * 4
-2018-04-09 09:21:14.106 +0900 [INFO] (0001:transaction): {done:  0 / 1, running: 0}
-2018-04-09 09:21:14.192 +0900 [INFO] (0016:task-0000): Connecting to jdbc:postgresql://localhost:5432/embulk_test options {ApplicationName=embulk-input-postgresql, user=user, password=***, tcpKeepAlive=true, loginTimeout=300, socketTimeout=1800}
-2018-04-09 09:21:14.200 +0900 [INFO] (0016:task-0000): SQL: SET search_path TO "public"
-2018-04-09 09:21:14.205 +0900 [INFO] (0016:task-0000): SQL: DECLARE cur NO SCROLL CURSOR FOR SELECT * FROM "users"
-2018-04-09 09:21:14.209 +0900 [INFO] (0016:task-0000): SQL: FETCH FORWARD 10000 FROM cur
-2018-04-09 09:21:14.211 +0900 [INFO] (0016:task-0000): > 0.00 seconds
-2018-04-09 09:21:14.215 +0900 [INFO] (0016:task-0000): SQL: FETCH FORWARD 10000 FROM cur
-2018-04-09 09:21:14.216 +0900 [INFO] (0016:task-0000): > 0.00 seconds
+digdag scheduler
+2018-04-09 13:11:47 +0900: Digdag v0.9.24
+2018-04-09 13:11:48 +0900 [INFO] (main): secret encryption engine: disabled
+2018-04-09 13:11:49 +0900 [INFO] (main): Added new revision 1
+2018-04-09 13:11:49 +0900 [INFO] (main): XNIO version 3.3.6.Final
+2018-04-09 13:11:49 +0900 [INFO] (main): XNIO NIO Implementation Version 3.3.6.Final
+2018-04-09 13:11:49 +0900 [INFO] (main): Starting server on 127.0.0.1:65432
+2018-04-09 13:11:49 +0900 [INFO] (main): Bound on 127.0.0.1:65432 (api)
+2018-04-09 13:12:00 +0900 [INFO] (scheduler-0): Starting a new session project id=1 workflow name=test session_time=2018-04-09T13:12:00+09:00
+2018-04-09 13:12:00 +0900 [INFO] (scheduler-0): Updating next schedule time: sched=StoredSchedule{id=1, projectId=1, createdAt=2018-04-09T04:11:48.977Z, updatedAt=2018-04-09T04:11:48.977Z, workflowName=test, workflowDefinitionId=1, nextRunTime=2018-04-09T04:12:00Z, nextScheduleTime=2018-04-09T04:12:00Z}, next=ScheduleTime{runTime=2018-04-09T04:13:00Z, time=2018-04-09T04:13:00Z}, lastSessionTime=2018-04-09T04:12:00Z
+2018-04-09 13:12:02 +0900 [INFO] (0027@[0:default]+test+embulk_test): sh>: embulk run -b vendor/bundle embulk_test.yml
+2018-04-09 13:12:02.456 +0900: Embulk v0.9.5
+2018-04-09 13:12:03.303 +0900 [INFO] (main): Started Embulk v0.9.5
+2018-04-09 13:12:06.297 +0900 [INFO] (0001:transaction): BUNDLE_GEMFILE is being set: "/Users/user/embulk-support/core_1001_plugin_not_found/vendor/bundle/Gemfile"
+2018-04-09 13:12:06.300 +0900 [INFO] (0001:transaction): Gem's home and path are being cleared.
+2018-04-09 13:12:08.623 +0900 [INFO] (0001:transaction): Loaded plugin embulk-input-postgresql (0.9.1)
+2018-04-09 13:12:08.674 +0900 [INFO] (0001:transaction): JDBC Driver = /Users/user/embulk-support/core_1001_plugin_not_found/vendor/bundle/jruby/2.3.0/gems/embulk-input-postgresql-0.9.1/default_jdbc_driver/postgresql-9.4-1205-jdbc41.jar
+2018-04-09 13:12:08.682 +0900 [INFO] (0001:transaction): Connecting to jdbc:postgresql://localhost:5432/embulk_test options {ApplicationName=embulk-input-postgresql, user=user, password=***, tcpKeepAlive=true, loginTimeout=300, socketTimeout=1800}
+2018-04-09 13:12:08.785 +0900 [INFO] (0001:transaction): SQL: SET search_path TO "public"
+2018-04-09 13:12:08.800 +0900 [INFO] (0001:transaction): Using JDBC Driver PostgreSQL 9.4 JDBC4.1 (build 1205)
+2018-04-09 13:12:08.905 +0900 [INFO] (0001:transaction): Using local thread executor with max_threads=8 / output tasks 4 = input tasks 1 * 4
+2018-04-09 13:12:08.913 +0900 [INFO] (0001:transaction): {done:  0 / 1, running: 0}
+2018-04-09 13:12:08.976 +0900 [INFO] (0016:task-0000): Connecting to jdbc:postgresql://localhost:5432/embulk_test options {ApplicationName=embulk-input-postgresql, user=user, password=***, tcpKeepAlive=true, loginTimeout=300, socketTimeout=1800}
+2018-04-09 13:12:08.985 +0900 [INFO] (0016:task-0000): SQL: SET search_path TO "public"
+2018-04-09 13:12:08.988 +0900 [INFO] (0016:task-0000): SQL: DECLARE cur NO SCROLL CURSOR FOR SELECT * FROM "users"
+2018-04-09 13:12:08.991 +0900 [INFO] (0016:task-0000): SQL: FETCH FORWARD 10000 FROM cur
+2018-04-09 13:12:08.993 +0900 [INFO] (0016:task-0000): > 0.00 seconds
+2018-04-09 13:12:08.998 +0900 [INFO] (0016:task-0000): SQL: FETCH FORWARD 10000 FROM cur
+2018-04-09 13:12:09.003 +0900 [INFO] (0016:task-0000): > 0.00 seconds
 sample_user1,sample_user1@example.com,
 sample_user2,sample_user2@example.com,
 sample_user2,sample_user2@example.com,
 sample_user1,sample_user1@example.com,1979-12-31
 sample_user2,sample_user2@example.com,1000-01-05
 sample_user2,sample_user2@example.com,0099-12-29
-2018-04-09 09:21:14.220 +0900 [INFO] (0001:transaction): {done:  1 / 1, running: 0}
-2018-04-09 09:21:14.227 +0900 [INFO] (main): Committed.
-2018-04-09 09:21:14.227 +0900 [INFO] (main): Next config diff: {"in":{},"out":{}}
-Success. Task state is saved at /Users/user/embulk-support/core_1001_plugin_not_found/.digdag/status/20180409T000000+0000 directory.
-  * Use --session <daily | hourly | "yyyy-MM-dd[ HH:mm:ss]"> to not reuse the last session time.
-  * Use --rerun, --start +NAME, or --goal +NAME argument to rerun skipped tasks.
+2018-04-09 13:12:09.006 +0900 [INFO] (0001:transaction): {done:  1 / 1, running: 0}
+2018-04-09 13:12:09.013 +0900 [INFO] (main): Committed.
+2018-04-09 13:12:09.013 +0900 [INFO] (main): Next config diff: {"in":{},"out":{}}
+^C2018-04-09 13:12:18 +0900 [INFO] (shutdown): Started shutdown process
+2018-04-09 13:12:18 +0900 [INFO] (shutdown): Shutting down workflow executor loop
+2018-04-09 13:12:18 +0900 [INFO] (shutdown): Closing HTTP listening sockets
+2018-04-09 13:12:18 +0900 [INFO] (shutdown): Waiting for completion of running HTTP requests...
+2018-04-09 13:12:18 +0900 [INFO] (shutdown): Shutting down HTTP worker threads
+2018-04-09 13:12:18 +0900 [INFO] (shutdown): Shutting down system
+2018-04-09 13:12:18 +0900 [INFO] (shutdown): Shutdown completed
 ```
