@@ -98,7 +98,7 @@ sample_user2,sample_user2@example.com,0099-12-29
 ## digdag scheduler in pararallel.
 
 
-```
+```yaml
 timezone: Asia/Tokyo
 schedule:
   minutes_interval>: 1
