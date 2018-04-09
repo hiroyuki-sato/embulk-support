@@ -56,7 +56,7 @@ sample_user2,sample_user2@example.com,0099-12-29
 2018-04-09 09:21:14.220 +0900 [INFO] (0001:transaction): {done:  1 / 1, running: 0}
 2018-04-09 09:21:14.227 +0900 [INFO] (main): Committed.
 2018-04-09 09:21:14.227 +0900 [INFO] (main): Next config diff: {"in":{},"out":{}}
-Success. Task state is saved at /Users/user/OpenProjects/embulk/embulk-support/core_1001_plugin_not_found/.digdag/status/20180409T000000+0000 directory.
+Success. Task state is saved at /Users/user/embulk-support/core_1001_plugin_not_found/.digdag/status/20180409T000000+0000 directory.
   * Use --session <daily | hourly | "yyyy-MM-dd[ HH:mm:ss]"> to not reuse the last session time.
   * Use --rerun, --start +NAME, or --goal +NAME argument to rerun skipped tasks.
 ```
