@@ -1,0 +1,26 @@
+in:
+  type: file
+  path_prefix: test.csv
+  parser:
+    charset: UTF-8
+    newline: LF
+    type: csv
+    delimiter: ','
+    quote: '"'
+    escape: '"'
+    trim_if_not_quoted: false
+    skip_header_lines: 1
+    allow_extra_columns: false
+    allow_optional_columns: false
+    columns:
+    - {name: id, type: long}
+    - {name: name, type: string}
+    - {name: data, type: string}
+out: 
+  type: postgresql
+  database: embulk_test
+  table: tab_test
+  host: localhost
+  user: user
+#  password: xxx
+  mode: insert
