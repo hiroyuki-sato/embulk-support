@@ -1,0 +1,29 @@
+in:
+  type: postgresql
+  database: embulk_test
+  table: meisai
+  host: localhost
+  user: hsato
+#  password:
+  column_options:
+    version_id: { type: long }
+    version: { type: string }
+    shouhin_id: { type: json , value_type: json }
+#    shouhin_id: { type: string , value_type: string }
+    pg_created_at: { type: timestamp , format: '%Y-%m-%d %H:%M:%S' }
+    pg_updated_at: { type: timestamp , format: '%Y-%m-%d %H:%M:%S' }
+out:
+  type: postgresql
+  database: embulk_test
+  table: meisai_out
+  host: localhost
+  user: hsato
+#  password:
+  mode: insert
+  column_options:
+    version_id: { type: smallint }
+    version: { type: character(4) }
+    shouhin_id: { type: json }
+    pg_created_at: { type: timestamp without time zone }
+    pg_updated_at: { type: timestamp without time zone }
+
