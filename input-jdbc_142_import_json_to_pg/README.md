@@ -15,6 +15,10 @@ CREATE TABLE meisai (
 );
 ```
 
+```
+insert into meisai values(1,'1.0','{"apple","banana","peach"}',current_timestamp,current_timestamp);
+```
+
 ```yaml
 in:
   type: postgresql
@@ -34,7 +38,7 @@ out:
   database: embulk_test
   table: meisai_out
   host: localhost
-  user: hsato
+  user: user
   password:
   mode: insert
   column_options:
@@ -47,9 +51,6 @@ out:
 ```
 
 
-```
-insert into meisai values(1,'1.0','{"apple","banana","peach"}',current_timestamp,current_timestamp);
-```
 
 
 ```
