@@ -1,0 +1,13 @@
+in:
+  type: mysql
+  user: user
+  password: *****
+  table: tinyint_sample
+  database: embulk_test
+  host: localhost
+  column_options:
+#    tiny_flag: { type: long }
+    tiny_flag: { type: boolean }
+out:
+  type: stdout
+ 
