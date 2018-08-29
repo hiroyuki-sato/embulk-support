@@ -1,0 +1,4 @@
+key_name,day,value,name
+2 new_clients,1523012762.001,1,a
+3 new_clients,1523012763.001,2,b
+4 new_clients,1523012764.001,3,c

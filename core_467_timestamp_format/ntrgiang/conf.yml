@@ -1,0 +1,27 @@
+in:
+  type: file
+  path_prefix: data.txt
+  parser:
+    charset: UTF-8
+    newline: LF
+    type: csv
+    delimiter: ','
+    quote: '"'
+    escape: '"'
+    trim_if_not_quoted: false
+    skip_header_lines: 1
+    allow_extra_columns: false
+    allow_optional_columns: false
+    columns:
+    - {name: key_name, type: string}
+    - {name: day, type: timestamp, format: "%s.%L" }
+#    - {name: day, type: timestamp, format: "%s.%N" }
+    - {name: value, type: long}
+    - {name: name, type: string}
+out: {type: stdout}
+#out:
+#  type: file
+#  path_prefix: "/tmp/out"
+#  file_ext: csv
+#  formatter:
+#    type: csv
