@@ -1,0 +1,5 @@
+in:
+  type: file
+  path_prefix: '/Users/hsato/OpenProjects/embulk/embulk-support/twitter_add_time_column/./csv/sample_'
+out:
+  type: stdout
