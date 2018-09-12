@@ -33,4 +33,6 @@ filters:
     - name: add_time
       type: string
       format: "%Y/%m/%d"
+- type: calcite
+  query: 'select "add_time","comment","purchase","time","account","id"  from $PAGES'
 out: {type: stdout}
