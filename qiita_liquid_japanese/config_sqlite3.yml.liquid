@@ -1,0 +1,9 @@
+in:
+  type: jdbc
+  driver_path: /tmp/sqlite-jdbc-3.27.2.1.jar
+  driver_class: org.sqlite.JDBC
+#  url: jdbc:sqlite:mydb.sqlite3
+  url: jdbc:sqlite:/tmp/test.db
+{% include 'common/pg_query' %}
+out:
+  type: stdout
