@@ -1,0 +1,9 @@
+in:
+  type: postgresql
+  host: localhost
+  user: user
+  database: embulk_test
+  #query: "select * from japanese_test"
+{% include 'common/pg_query' %}
+out:
+  type: stdout

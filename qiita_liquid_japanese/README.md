@@ -1,55 +1,41 @@
 
 ```
-embulk preview config.yml.liquid
-2019-06-03 11:09:59.896 +0900: Embulk v0.9.17
-2019-06-03 11:10:00.537 +0900 [WARN] (main): DEPRECATION: JRuby org.jruby.embed.ScriptingContainer is directly injected.
-2019-06-03 11:10:02.585 +0900 [INFO] (main): Gem's home and path are set by default: "/path/to/.embulk/lib/gems"
-2019-06-03 11:10:04.218 +0900 [INFO] (main): Started Embulk v0.9.17
-2019-06-03 11:10:04.290 +0900 [INFO] (0001:preview): Loaded plugin embulk-filter-row (0.5.1)
-2019-06-03 11:10:04.313 +0900 [INFO] (0001:preview): Listing local files at directory './csv' filtering filename by prefix 'sample_'
-2019-06-03 11:10:04.314 +0900 [INFO] (0001:preview): "follow_symlinks" is set false. Note that symbolic links to directories are skipped.
-2019-06-03 11:10:04.316 +0900 [INFO] (0001:preview): Loading files [./csv/sample_01.csv]
-2019-06-03 11:10:04.323 +0900 [INFO] (0001:preview): Try to read 32,768 bytes from input source
-+---------+--------------+-------------------------+-------------------------+----------------+
-| id:long | account:long |          time:timestamp |      purchase:timestamp | comment:string |
-+---------+--------------+-------------------------+-------------------------+----------------+
-|       4 |       11,270 | 2015-01-29 11:54:36 UTC | 2015-01-29 00:00:00 UTC |            日本語 |
-+---------+--------------+-------------------------+-------------------------+----------------+
+embulk preview config_pg.yml.liquid
+2019-06-05 20:48:20.781 +0900: Embulk v0.9.17
+2019-06-05 20:48:21.193 +0900 [WARN] (main): DEPRECATION: JRuby org.jruby.embed.ScriptingContainer is directly injected.
+2019-06-05 20:48:22.907 +0900 [INFO] (main): Gem's home and path are set by default: "/Users/user/.embulk/lib/gems"
+2019-06-05 20:48:24.426 +0900 [INFO] (main): Started Embulk v0.9.17
+2019-06-05 20:48:24.491 +0900 [INFO] (0001:preview): Loaded plugin embulk-input-postgresql (0.9.3)
+2019-06-05 20:48:24.526 +0900 [INFO] (0001:preview): JDBC Driver = /Users/user/.embulk/lib/gems/gems/embulk-input-postgresql-0.9.3/default_jdbc_driver/postgresql-9.4-1205-jdbc41.jar
+2019-06-05 20:48:24.531 +0900 [INFO] (0001:preview): Connecting to jdbc:postgresql://localhost:5432/embulk_test options {ApplicationName=embulk-input-postgresql, user=user, password=***, tcpKeepAlive=true, loginTimeout=300, socketTimeout=1800}
+2019-06-05 20:48:24.574 +0900 [INFO] (0001:preview): SQL: SET search_path TO "public"
+2019-06-05 20:48:24.582 +0900 [INFO] (0001:preview): Using JDBC Driver PostgreSQL 9.4 JDBC4.1 (build 1205)
+2019-06-05 20:48:24.717 +0900 [INFO] (0001:preview): Connecting to jdbc:postgresql://localhost:5432/embulk_test options {ApplicationName=embulk-input-postgresql, user=user, password=***, tcpKeepAlive=true, loginTimeout=300, socketTimeout=1800}
+2019-06-05 20:48:24.723 +0900 [INFO] (0001:preview): SQL: SET search_path TO "public"
+2019-06-05 20:48:24.725 +0900 [INFO] (0001:preview): SQL: DECLARE cur NO SCROLL CURSOR FOR select * from japanese_test where name = 'もも'
+2019-06-05 20:48:24.727 +0900 [INFO] (0001:preview): SQL: FETCH FORWARD 10000 FROM cur
+2019-06-05 20:48:24.728 +0900 [INFO] (0001:preview): > 0.00 seconds
+2019-06-05 20:48:24.730 +0900 [INFO] (0001:preview): SQL: FETCH FORWARD 10000 FROM cur
+2019-06-05 20:48:24.731 +0900 [INFO] (0001:preview): > 0.00 seconds
++---------+-------------+
+| id:long | name:string |
++---------+-------------+
+|       3 |          もも |
++---------+-------------+
 ```
 
 ```yaml
 in:
-  type: file
-  path_prefix: ./csv/sample_
-#  decoders:
-#  - {type: gzip}
-  parser:
-    charset: UTF-8
-    newline: LF
-    type: csv
-    delimiter: ','
-    quote: '"'
-    escape: '"'
-    null_string: 'NULL'
-    trim_if_not_quoted: false
-    skip_header_lines: 1
-    allow_extra_columns: false
-    allow_optional_columns: false
-    columns:
-    - {name: id, type: long}
-    - {name: account, type: long}
-    - {name: time, type: timestamp, format: '%Y-%m-%d %H:%M:%S'}
-    - {name: purchase, type: timestamp, format: '%Y%m%d'}
-    - {name: comment, type: string}
-out: {type: stdout}
-{% include 'common/filter' %}
+  type: postgresql
+  host: localhost
+  user: user
+  database: embulk_test
+  #query: "select * from japanese_test"
+{% include 'common/pg_query' %}
+out:
+  type: stdout
 ```
 
 ```yaml
-filters:
-  - type: row
-    where: |-
-      (
-        comment = '日本語'
-      )
+  query: "select * from japanese_test where name = 'もも'"
 ```
