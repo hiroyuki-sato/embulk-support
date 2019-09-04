@@ -1,0 +1,36 @@
+in:
+  type: file
+  path_prefix: hoge/csv/sample_
+#  decoders:
+#  - {type: gzip}
+  parser:
+    charset: UTF-8
+    newline: LF
+    type: csv
+    delimiter: ','
+    quote: '"'
+    escape: '"'
+    null_string: 'NULL'
+    trim_if_not_quoted: false
+    skip_header_lines: 1
+    allow_extra_columns: false
+    allow_optional_columns: false
+    columns:
+    - {name: id, type: string}
+    - {name: account, type: string}
+    - {name: time, type: timestamp, format: '%Y-%m-%d %H:%M:%S'}
+    - {name: purchase, type: timestamp, format: '%Y%m%d'}
+    - {name: comment, type: string}
+out: {type: stdout}
+
+filters:
+  - type: ruby_proc
+    columns:
+    - name: id
+      proc: |
+        -> (record){ record.nil? ? nil :  record.gsub(",","").to_i }
+      type: long
+    - name: account
+      proc: |
+        -> (record){ record.nil? ? nil :  record.gsub(",","").to_f }
+      type: double

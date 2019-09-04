@@ -1,0 +1,5 @@
+in:
+  type: file
+  path_prefix: '/private/tmp/hoge/csv/sample_'
+out:
+  type: stdout
