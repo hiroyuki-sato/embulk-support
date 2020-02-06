@@ -1,5 +1,9 @@
 ## prepare
 
+```
+embulk example hoge
+```
+
 ```sql
 create table example (
   id int not null primary key,
