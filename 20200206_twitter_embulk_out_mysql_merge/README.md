@@ -75,3 +75,6 @@ mysql> select * from example;
 +----+---------+----------+------------+----------------------------+
 ```
 
+```
+2020-02-06 17:22:26.281 +0900 [INFO] (0001:transaction): SQL: INSERT INTO `example` (`id`, `account`, `time`, `purchase`, `comment`) SELECT `id`, `account`, `time`, `purchase`, `comment` FROM `example_000001701997d4f9_embulk000` UNION ALL SELECT `id`, `account`, `time`, `purchase`, `comment` FROM `example_000001701997d4f9_embulk001` UNION ALL SELECT `id`, `account`, `time`, `purchase`, `comment` FROM `example_000001701997d4f9_embulk002` UNION ALL SELECT `id`, `account`, `time`, `purchase`, `comment` FROM `example_000001701997d4f9_embulk003` ON DUPLICATE KEY UPDATE `id` = VALUES(`id`), `account` = VALUES(`account`), `time` = VALUES(`time`), `purchase` = VALUES(`purchase`), `comment` = VALUES(`comment`)
+```
