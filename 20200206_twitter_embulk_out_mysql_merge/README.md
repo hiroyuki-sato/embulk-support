@@ -75,7 +75,7 @@ mysql> select * from example;
 +----+---------+----------+------------+----------------------------+
 ```
 
-```
+```sql
 2020-02-06 17:22:26.281 +0900 [INFO] (0001:transaction): SQL:
 INSERT INTO `example`
   (`id`, `account`,
