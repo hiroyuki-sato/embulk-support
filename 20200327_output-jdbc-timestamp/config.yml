@@ -22,6 +22,17 @@ in:
     - { name: TIMESTAMP0_ITEM,  type: timestamp }
 #    - { name: TIMESTAMP12_ITEM, type: timestamp, format: "%Y-%m %d %H:%M:%S %9N %z" }
     - { name: TIMESTAMP12_ITEM, type: timestamp }
+#out:
+#  type: stdout
+#  prints_column_names: true
+exec:
+  min_output_tasks: 1
+
 out:
-  type: stdout
-  prints_column_names: true
+  type: file
+  path_prefix: out
+  file_ext: csv
+  default_timestamp_format: "%Y-%m-%d %H:%M:%S %9N"
+  formatter:
+    type: csv
+
