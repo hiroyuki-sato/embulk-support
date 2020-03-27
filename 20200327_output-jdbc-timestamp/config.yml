@@ -1,0 +1,27 @@
+in:
+  type: file
+  path_prefix: test_datetime.csv
+  parser:
+    type: csv
+    charset: UTF-8
+    newline: LF
+    type: csv
+    delimiter: ','
+    quote: '"'
+    escape: '"'
+    null_string: 'NULL'
+    trim_if_not_quoted: false
+    skip_header_lines: 1
+    allow_extra_columns: false
+    allow_optional_columns: false
+    columns:
+    - { name: ID,               type: long }
+    - { name: DATE_ITEM,        type: timestamp }
+    - { name: TIME_ITEM,        type: timestamp }
+    - { name: TIMESTAMP_ITEM,   type: timestamp }
+    - { name: TIMESTAMP0_ITEM,  type: timestamp }
+#    - { name: TIMESTAMP12_ITEM, type: timestamp, format: "%Y-%m %d %H:%M:%S %9N %z" }
+    - { name: TIMESTAMP12_ITEM, type: timestamp }
+out:
+  type: stdout
+  prints_column_names: true
