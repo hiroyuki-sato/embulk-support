@@ -1,0 +1,33 @@
+in:
+  type: inline
+  schema:
+    - { name: id, type: long }
+    - { name: string_column, type: string }
+    - { name: double_column, type: double }
+    - { name: boolean_column, type: boolean }
+    - { name: sdate, type: timestamp }
+  data:
+
+    # First data insertion.
+    - { id: 1, string_column: test, json_column: { id: 1, name: toyama }, double_column: 0.1, boolean_column: true, sdate: '2016-06-14 15:19:05' }
+    - { id: 2, string_column: test, json_column: { id: 2, name: toyama }, double_column: 0.1, boolean_column: true, sdate: '2016-06-14 15:19:05' }
+    - { id: 3 }
+
+    # 2nd data insertion
+    #- { id: 1, string_column: test, json_column: { id: 1, name: toyama }, double_column: 0.1, boolean_column: true, sdate: '2016-06-14 15:19:05' }
+    #- { id: 2, string_column: test, json_column: { id: 2, name: toyama }, double_column: 0.1, boolean_column: true }
+    #- { id: 3, string_column: test, json_column: { id: 2, name: toyama }, double_column: 0.1, boolean_column: true, sdate: '2016-06-14 15:19:05' }
+#out: {type: stdout}
+out:
+  type: mysql
+  host: localhost
+  user: user
+  password: password
+  database: embulk_test
+  table: merge_direct_test
+  mode: merge_direct
+  options: {useUnicode: true, characterEncoding: UTF-8}
+  create_table_constraint: 'primary key(id)'
+  column_options:
+    sdate: {type: date null}
+
