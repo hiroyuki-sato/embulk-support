@@ -1,0 +1,19 @@
+in:
+  type: postgresql
+  host: localhost
+  user: user
+  password: password
+  database: embulk_test
+#  table: people
+  query: select * from people order by id
+exec:
+  min_output_tasks: 1
+out:
+  type: file
+  path_prefix: out/dump
+  file_ext: xlsx
+  formatter:
+    type: poi_excel
+    spread_sheet_version: EXCEL97
+    sheet_name: Sheet1
+

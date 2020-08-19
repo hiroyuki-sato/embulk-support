@@ -1,0 +1,7 @@
+in:
+  path_prefix: MOCK_DATA.csv
+  type: file
+  parser:
+    type: csv
+out:
+  type: stdout
