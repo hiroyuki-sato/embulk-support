@@ -1,6 +1,6 @@
 in:
   type: command
-  command: env
+  command: env INPUT=HOGEHOGE
   parser:
     type: none
 filters:
@@ -8,19 +8,26 @@ filters:
     before:
       - proc: |
           -> do
+            ENV['SSL_CERT_FILE'] = '/path/to/cert'
           end
+
+#    after:
+#      - proc: |
+#          -> do
 #            ENV.each do |k,v|
 #            puts "#{k} == #{v}"
 #            end
+#          end
+
     columns:
-      - name: id
+      - name: payload
         proc: |
           ->(data) do
-            ENV['FOO'] = 'HOGEHOGE'
-            data
+            data 
           end
 out:
   type: command
-  command: 'cat - > /tmp/test.txt; echo "***" >> /tmp/test.txt ;env HOGE=FUGA >> /tmp/test.txt'
+#  command: 'cat - > /tmp/test.txt; echo "***" >> /tmp/test.txt ;env HOGE=FUGA >> /tmp/test.txt'
+  command: 'cat - > /dev/null; env'
   formatter:
     type: csv
