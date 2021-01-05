@@ -1,0 +1,26 @@
+in:
+  type: command
+  command: env
+  parser:
+    type: none
+filters:
+  - type: ruby_proc
+    before:
+      - proc: |
+          -> do
+          end
+#            ENV.each do |k,v|
+#            puts "#{k} == #{v}"
+#            end
+    columns:
+      - name: id
+        proc: |
+          ->(data) do
+            ENV['FOO'] = 'HOGEHOGE'
+            data
+          end
+out:
+  type: command
+  command: 'cat - > /tmp/test.txt; echo "***" >> /tmp/test.txt ;env HOGE=FUGA >> /tmp/test.txt'
+  formatter:
+    type: csv
