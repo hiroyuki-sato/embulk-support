@@ -1,0 +1,24 @@
+in:
+  type: file
+  path_prefix: sample2.json
+#  parser:
+#    type: json
+
+  parser:
+    type: json
+    columns:
+    - { name: a, type: string }
+    - { name: b, type: json }
+    - { name: e, type: json }
+
+#filters:
+#  - type: to_json
+#    column:
+#    - { name: payload, type: json }
+#  - type: typecast
+#    columns:
+#    - { name: payload, type: json }
+
+   
+out:
+  type: stdout
