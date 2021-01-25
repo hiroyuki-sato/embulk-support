@@ -1,6 +1,19 @@
 
 ##
 
+Reported-by: [@koji_mats](https://twitter.com/koji_mats/status/1353253702329487361?s=20)
+
+* embulk: 0.9.23
+* embulk-filter-expand_json: 0.5.2
+* embulk-filter-flatten_json: 0.0.2
+
+| pattern           | config           | result | note              |
+|-------------------|------------------|--------|-------------------|
+| only expand_json  | only_expand.yml  | OK     |                   |
+| only flatten_json | only_expand.yml  | OK     |                   |
+| expand + flatten  | both_filters.yml | ERR    |                   |
+| expand + flatten  | both_filters.yml | OK     | input data < 64KB |
+
 
 ```
 embulk run both_filters.yml
