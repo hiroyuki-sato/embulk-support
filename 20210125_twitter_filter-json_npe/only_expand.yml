@@ -1,0 +1,29 @@
+in:
+  type: file
+  path_prefix: ./test2_data.json
+#  path_prefix: ./test_data.json
+  parser:
+    type: none
+filters:
+#  - type: flatten_json
+#    json_columns:
+#      - payload
+#    separator: "__"
+#    array_index_prefix: "_"
+  - type: expand_json
+    json_column_name: payload
+    expanded_columns:
+      - {name: "author__login", type: string}
+      - {name: "createdAt", type: string}
+      - {name: "additions", type: string}
+      - {name: "deletions", type: string}
+      - {name: "commits__nodes_0__commit__authoredDate", type: string}
+      - {name: "mergedAt", type: string}
+      - {name: "title", type: string}
+      - {name: "url", type: string}
+out:
+  type: stdout
+
+exec:
+  preview_sample_buffer_bytes: 131072 # 64KB *2
+
